@@ -1,5 +1,5 @@
 Bootstrap:docker
-FROM opensciencegrid/osgvo-el7
+From:opensciencegrid/osgvo-el7
 
 %labels
 MAINTAINER hskarlupka
