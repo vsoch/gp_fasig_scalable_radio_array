@@ -9,7 +9,7 @@ request_disk = 10GB
 transfer_executable = false
 Requirements = HAS_SINGULARITY == TRUE
 
-+SingularityImage = "shub://hskarlupka/gp_fasig_scalable_radio_array"
++SingularityImage = "/cvmfs/singularity.opensciencegrid.org/wipac/fasig_scalable_radio_array:latest"
 +SingularityBindCVMFS = True
 
 use_x509userproxy = true
