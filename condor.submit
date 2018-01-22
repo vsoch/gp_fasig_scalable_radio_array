@@ -5,11 +5,11 @@ output = job.out
 error = job.err
 request_cpus = 1
 request_memory = 1GB
-request_disk = 1GB
+request_disk = 10GB
 transfer_executable = false
 Requirements = HAS_SINGULARITY == TRUE
 
-+SingularityImage = "docker://wipac/fasig_scalable_radio_array:latest"
++SingularityImage = "shub://hskarlupka/gp_fasig_scalable_radio_array"
 +SingularityBindCVMFS = True
 
 use_x509userproxy = true
