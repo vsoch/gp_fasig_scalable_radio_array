@@ -1,12 +1,12 @@
-executable = python3.6
-arguments = full_sim.py 1e8 11 --number 100 --threshold 1 --output /data/user/hskarlupka/out.dat
+executable = full_sim.py
+arguments = 1e8 11 --number 100 --threshold 1 --output out.dat -g /data/user/hskarlupka/out.dat
 log = job.log
 output = job.out
 error = job.err
 request_cpus = 1
 request_memory = 1GB
 request_disk = 10GB
-transfer_executable = false
+transfer_executable = true
 Requirements = HAS_SINGULARITY == TRUE
 
 +SingularityImage = "/cvmfs/singularity.opensciencegrid.org/wipac/fasig_scalable_radio_array:latest"

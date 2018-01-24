@@ -1,3 +1,4 @@
+#!/user/bin/python3.6
 """Script for running a full detector simulation"""
 
 import sys
@@ -39,6 +40,8 @@ parser.add_argument('--noiseless', action='store_true',
                     help="if present, noise not added to signal")
 parser.add_argument('-o', '--output', default="",
                     help="output file name (default stdout)")
+parser.add_argument('-g', '--grid_output', default=False,
+                    help="grid output file name")
 
 
 args = parser.parse_args()
@@ -47,8 +50,6 @@ args.noisy = not(args.noiseless)
 
 # Set output to either the given file or stdout
 if args.output!="":
-    if not os.path.isdir(os.path.dirname(args.output)):
-        os.makedirs(os.path.dirname(args.output))
     f = open(args.output, 'w')
     def flush_file(file):
         file.close()
@@ -444,14 +445,15 @@ print("\n", triggers, "/", args.number, " events detected", sep="", file=f)
 close_file(f)
 
 # GridFTP
-cmd = []
-cmd.append('/cvmfs/icecube.opensciencegrid.org/py2-v2/RHEL_7_x86_64/bin/globus-url-copy')
-cmd.append(args.output)
-cmd.append('gsiftp://gridftp.icecube.wisc.edu' + args.output)
-for i in range(1, 5):
-    try:
-        output = check_output(cmd, shell=False, env=os.environ, stderr=STDOUT)
-        print(output)
-        break
-    except:
-        sleep(30)
+if args.grid_output:
+    cmd = []
+    cmd.append('/cvmfs/icecube.opensciencegrid.org/py2-v2/RHEL_7_x86_64/bin/globus-url-copy')
+    cmd.append(args.output)
+    cmd.append('gsiftp://gridftp.icecube.wisc.edu' + args.grid_output)
+    for i in range(1, 5):
+        try:
+            output = check_output(cmd, shell=False, env=os.environ, stderr=STDOUT)
+            print(output)
+            break
+        except:
+            sleep(30)
